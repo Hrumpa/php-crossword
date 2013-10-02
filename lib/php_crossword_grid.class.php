@@ -58,7 +58,7 @@ class PHP_Crossword_Grid
 	{
 		for ($y = 0; $y < $this->rows; $y++)
 		for ($x = 0; $x < $this->cols; $x++)
-		$this->cells[$x][$y] =& new PHP_Crossword_Cell($x, $y);
+		$this->cells[$x][$y] = new PHP_Crossword_Cell($x, $y);
 	}
 
 	/**
@@ -102,7 +102,7 @@ class PHP_Crossword_Grid
 	 */
 	function placeWord($word, $x, $y, $axis)
 	{
-		$w =& new PHP_Crossword_Word($word, $axis, $this->cells[$x][$y]);
+		$w = new PHP_Crossword_Word($word, $axis, $this->cells[$x][$y]);
 
 		++$this->inum; // sandy addition
 		++$this->maxinum; // sandy addition
@@ -118,13 +118,11 @@ class PHP_Crossword_Grid
 		{
 			$s = $x;
 			$c =& $cx;
-			$t =& $cy;
 		}
 		else
 		{
 			$s = $y;
 			$c =& $cy;
-			$t =& $cx;
 		}
 
 		// dump( "PLACING WORD: $cx x $cy - {$w->word}" );
@@ -141,21 +139,15 @@ class PHP_Crossword_Grid
 		// disable cell before first cell
 		$c = $s - 1;
 		if ($c >= 0 )
-			$this->cells[$cx][$cy]->setCanCross(PC_AXIS_BOTH, FALSE);
+		$this->cells[$cx][$cy]->setCanCross(PC_AXIS_BOTH, FALSE);
 
 		$this->cells[$cx][$cy]->number = $w->inum; // sandy addition
 
-		// disable cell after last cell
+		// disable cell after first cell
 		$c = $s + strlen($word);
 		if (is_object($this->cells[$cx][$cy]))
-			$this->cells[$cx][$cy]->setCanCross(PC_AXIS_BOTH, FALSE);
+		$this->cells[$cx][$cy]->setCanCross(PC_AXIS_BOTH, FALSE);
 
-		// avoid starting "corner word" - which would use the same
-		// number cell as this word
-		$c = $s - 1;
-		$t = $t + 1;
-		if ($c >= 0 && is_object($this->cells[$cx][$cy]))
-			$this->cells[$cx][$cy]->setCanCross(PC_AXIS_BOTH, FALSE);
 	}
 
 	/**

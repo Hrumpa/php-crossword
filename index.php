@@ -43,12 +43,6 @@ Thanks to Sandy Antunes.
 	<li><a href="demo-xml.php" target="_blank">Demo XML output</a></li>
 </ul>
 
-<h3>Source</h3>
-
-<ul>
-	<li><a href="http://github.com/laurynas/php-crossword/">Github</a></li>
-</ul>
-
 <h3>Features</h3>
 
 <ul>
@@ -58,6 +52,16 @@ Thanks to Sandy Antunes.
 	<li>XML output</li>
 	<li>Colored debugging</li>
 </ul>
+
+<h3>TODO</h3>
+
+<ul>
+	<li>API Documentation</li>
+	<li>Installation instructions</li>
+	<li>Client Java Applet</li>
+	<li>More databases support...</li>
+</ul>
+
 
 <hr size="1" />
 

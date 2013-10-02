@@ -243,7 +243,7 @@ class PHPCrosswordClient
 		require_once 'lib/mysql.class.php';
 		require_once 'lib/php_crossword.class.php';
 		
-		$pc =& new PHP_Crossword($this->cols, $this->rows);
+		$pc = new PHP_Crossword($this->cols, $this->rows);
 		
 		$pc->setGroupID($this->groupid);
 		$pc->setMaxWords($this->words);

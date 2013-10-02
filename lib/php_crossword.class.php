@@ -69,7 +69,7 @@ class PHP_Crossword
         $this->cols = (int)$cols;
 
 		// connect to the database
-        $this->db =& new MySQL;
+        $this->db = new MySQL;
     }
 	
 	/**

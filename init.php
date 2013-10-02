@@ -14,7 +14,7 @@ $max_words = (int)$_REQUEST['max_words'] ? (int)$_REQUEST['max_words'] : 15;
 $max_tries = (int)$_REQUEST['max_tries'] ? (int)$_REQUEST['max_tries'] : 10; 
 $groupid = !empty($_REQUEST['groupid']) ? $_REQUEST['groupid'] : 'demo';
 
-$pc =& new PHP_Crossword($rows, $cols);
+$pc = new PHP_Crossword($rows, $cols);
 
 $pc->setGroupID($groupid);	
 $pc->setMaxWords($max_words);
