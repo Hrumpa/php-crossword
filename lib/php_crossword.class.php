@@ -242,9 +242,9 @@ class PHP_Crossword
 
             // dump( "Words: " . $this->grid->countWords() . ", Tries: $this->_tries" );
 
-            $w =& $this->grid->getRandomWord();
+            $w = $this->grid->getRandomWord();
 
-            if ($w == PC_WORDS_FULLY_CROSSED)
+            if (!is_object($w) && $w == PC_WORDS_FULLY_CROSSED)
             {
                 // echo "NOTE: All words fully crossed...";
                 break;
@@ -287,14 +287,18 @@ class PHP_Crossword
 	 * @param int $axis 
 	 * @return array Array of 2 items - word and start cell object
 	 */
-    function __getWordWithStart(&$cell, $axis)
+    function &__getWordWithStart(&$cell, $axis)
     {
         $start = & $this->grid->getStartCell($cell, $axis);
         $end = & $this->grid->getEndCell($cell, $axis);
 
         $word = $this->__getWord($cell, $start, $end, $axis);
 
-        if (!$word) return NULL;
+		if (!$word) {
+			$a = null;
+			$r =& $a;
+			return $r;
+		}
 
         $pos = NULL;
 
@@ -309,8 +313,9 @@ class PHP_Crossword
 
         }
         while (!$can);
-
-        return array($word, &$s_cell);
+		$a = array($word, &$s_cell);
+		$r =& $a;
+        return $r;
     }
 
 	/**
@@ -342,12 +347,14 @@ class PHP_Crossword
             $e = $end->y - $cell->y;
         }
 
-        $l = strlen($word);
+        $encoding = mb_detect_encoding($word);
+        $l = mb_strlen($word, $encoding);
 
         do
         {
             $offset = isset($pos) ? $pos+1 : 0;
-            $pos = strpos($word, $cell->letter, $offset);
+			$encoding = mb_detect_encoding($word);
+            $pos = mb_strpos($word, $cell->letter, $offset, $encoding);
             $a = $l-$pos-1;
             if ($pos <= $s && $a <= $e)
             {
@@ -374,7 +381,8 @@ class PHP_Crossword
         $this->_match_line = $this->__getMatchLine($cell, $start, $end, $axis);
         $match = $this->__getMatchLike($this->_match_line);
         $min = $this->__getMatchMin($this->_match_line);
-        $max = strlen($this->_match_line);
+        $encoding = mb_detect_encoding($this->_match_line);
+		$max = mb_strlen($this->_match_line, $encoding);
         $regexp = $this->__getMatchRegexp($this->_match_line);
 
         $rs = $this->__loadWords($match, $min, $max);
@@ -385,13 +393,13 @@ class PHP_Crossword
 	/**
 	 * Pick the word from the resultset
 	 * @private
-	 * @param mysql_resultset $rs
+	 * @param mysqli_resultset $rs
 	 * @param string $regexp Regexp to match	 
 	 * return string|NULL word or NULL if couldn't find
 	 */
     function __pickWord(&$rs, $regexp)
     {
-        $n = mysql_num_rows($rs);
+        $n = mysqli_num_rows($rs);
         if (!$n) return NULL;
 
         $list = range(0, $n-1);
@@ -399,19 +407,19 @@ class PHP_Crossword
         while (count($list))
         {
             $i = array_rand($list);
-            mysql_data_seek($rs, $i);
-            $row = mysql_fetch_row($rs);
+            mysqli_data_seek($rs, $i);
+            $row = mysqli_fetch_row($rs);
 
-            if (preg_match("/{$regexp}/", $row[0]))
+            if (preg_match("/{$regexp}/u", $row[0]))
             {
-                mysql_free_result($rs);
+                mysqli_free_result($rs);
                 return $row[0];
             }
 
             unset($list[$i]);
         }
 
-        mysql_free_result($rs);
+        mysqli_free_result($rs);
 
         return NULL;
     }
@@ -461,9 +469,10 @@ class PHP_Crossword
 	 */
     function __getMatchMin($str)
     {
-        $str = preg_replace("/^_+/", "", $str, 1);
-        $str = preg_replace("/_+$/", "", $str, 1);
-        return strlen($str);
+        $encoding = mb_detect_encoding($str);
+        $str = preg_replace("/^_+/u", "", $str, 1);
+        $str = preg_replace("/_+$/u", "", $str, 1);
+		return mb_strlen($str, $encoding);
     }
 
 	/**
@@ -474,8 +483,8 @@ class PHP_Crossword
 	 */
     function __getMatchLike($str)
     {
-        $str = preg_replace("/^_+/", "%", $str, 1);
-        $str = preg_replace("/_+$/", "%", $str, 1);
+        $str = preg_replace("/^_+/u", "%", $str, 1);
+        $str = preg_replace("/_+$/u", "%", $str, 1);
         return $str;
     }
 
@@ -487,9 +496,10 @@ class PHP_Crossword
 	 */
     function __getMatchRegexp($str)
     {
-        $str = preg_replace("/^_*/e", "'^.{0,'.strlen('\\0').'}'", $str, 1);
-        $str = preg_replace("/_*$/e", "'.{0,'.strlen('\\0').'}$'", $str, 1);
-        $str = preg_replace("/_+/e", "'.{'.strlen('\\0').'}'", $str);
+		$str = preg_replace_callback("/^_*/", function($m) { $encoding = mb_detect_encoding($m[0]); return '^.{0,'.mb_strlen($m[0], $encoding).'}'; }, $str, 1);
+		$str = preg_replace_callback("/_*$/", function($m) { $encoding = mb_detect_encoding($m[0]); return '.{0,'.mb_strlen($m[0], $encoding).'}$'; }, $str, 1);
+		$str = preg_replace_callback("/_+/", function($m) { $encoding = mb_detect_encoding($m[0]); return '.{'.mb_strlen($m[0], $encoding).'}'; }, $str);
+
         return $str;
     }
 
@@ -611,7 +621,7 @@ class PHP_Crossword
     function insertWord($word, $question)
     {
         $word = trim($word);
-		$word = preg_replace("/[\_\'\"\%\*\+\\\\\/\[\]\(\)\.\{\}\$\^\,\<\>\;\:\=\?\#\-]/", '', $word);
+		$word = preg_replace("/[\_\'\"\%\*\+\\\\\/\[\]\(\)\.\{\}\$\^\,\<\>\;\:\=\?\#\-]/u", '', $word);
         if (empty($word)) return FALSE;
         if ($this->existsWord($word)) return FALSE;
 		

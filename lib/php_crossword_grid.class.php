@@ -75,7 +75,7 @@ class PHP_Crossword_Grid
 	 * Get random word from the grid (not fully crossed)
 	 * @return object word object
 	 */
-	function &getRandomWord()
+	function getRandomWord()
 	{
 		$words = array();
 
@@ -126,13 +126,13 @@ class PHP_Crossword_Grid
 		}
 
 		// dump( "PLACING WORD: $cx x $cy - {$w->word}" );
-
-		for ($i = 0; $i < strlen($word); $i++)
+		$encoding = mb_detect_encoding($word);
+		for ($i = 0, $len = mb_strlen($word, $encoding); $i < $len; $i++)
 		{
 			$c = $s + $i;
 			$cell =& $this->cells[$cx][$cy];
 
-			$cell->setLetter($w->word[$i], $axis, $this);
+			$cell->setLetter(mb_substr($w->word, $i, 1, $encoding), $axis, $this);
 			$w->cells[$i] =& $cell;
 		}
 
@@ -144,7 +144,7 @@ class PHP_Crossword_Grid
 		$this->cells[$cx][$cy]->number = $w->inum; // sandy addition
 
 		// disable cell after first cell
-		$c = $s + strlen($word);
+		$c = $s + mb_strlen($word, $encoding);
 		if (is_object($this->cells[$cx][$cy]))
 		$this->cells[$cx][$cy]->setCanCross(PC_AXIS_BOTH, FALSE);
 
@@ -160,7 +160,8 @@ class PHP_Crossword_Grid
 	 */
 	function canPlaceWord($word, $x, $y, $axis)
 	{
-		for ($i = 0; $i < strlen($word); $i++)
+		$encoding = mb_detect_encoding($word);
+		for ($i = 0, $len = mb_strlen($word, $encoding); $i < $len; $i++)
 		{
 			if ($axis == PC_AXIS_H )
 			$cell =& $this->cells[$x+$i][$y];
@@ -173,7 +174,7 @@ class PHP_Crossword_Grid
 				echo $this->getHTML(1);
 			}
 
-			if (!$cell->canSetLetter($word[$i], $axis))
+			if (!$cell->canSetLetter(mb_substr($word, $i, 1, $encoding), $axis))
 			return FALSE;
 		}
 		return TRUE;
@@ -207,8 +208,10 @@ class PHP_Crossword_Grid
 	{
 		$n = $axis == PC_AXIS_H ? $this->cols : $this->rows;
 
-		if (!is_null($word))
-		$length = strlen($word);
+		if (!is_null($word)) {
+			$encoding = mb_detect_encoding($word);
+			$length = mb_strlen($word, $encoding);
+		}
 
 		if ($n == $length) return 0;
 
@@ -223,8 +226,9 @@ class PHP_Crossword_Grid
 	 */
 	function getCenterPos($axis, $word = '')
 	{
+		$encoding = mb_detect_encoding($word);
 		$n = $axis == PC_AXIS_H ? $this->cols : $this->rows;
-		$n-= strlen($word);
+		$n-= mb_strlen($word, $encoding);
 		$n = floor($n / 2);
 		return $n;
 	}

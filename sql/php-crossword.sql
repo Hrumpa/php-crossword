@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 2.6.0-pl3
+-- version 4.6.4
 -- http://www.phpmyadmin.net
 -- 
 -- Host: localhost
--- Generation Time: Nov 30, 2004 at 10:31 PM
--- Server version: 4.0.22
--- PHP Version: 4.3.9
+-- Generation Time: Dec 28 2016 г., 00:08
+-- Server version: 5.7.16
+-- PHP Version: 5.5.38
 -- 
 -- Database: `php-crossword`
 -- 
@@ -17,133 +17,132 @@
 -- 
 
 DROP TABLE IF EXISTS `words`;
-CREATE TABLE `words` (
-  `groupid` varchar(10) NOT NULL default '''lt''',
-  `word` varchar(20) NOT NULL default '',
-  `question` varchar(255) NOT NULL default '',
-  PRIMARY KEY  (`word`,`groupid`),
-  KEY `groupid` (`groupid`),
-  FULLTEXT KEY `word_3` (`word`)
-) TYPE=MyISAM;
+CREATE TABLE `php-crossword`.`words` (
+    `groupid` VARCHAR(10) NOT NULL DEFAULT 'lt',
+    `word` VARCHAR(255) NOT NULL,
+    `question` VARCHAR(255) NOT NULL,
+    PRIMARY KEY (`word`, `groupid`),
+    FULLTEXT `word_3` (`question`)
+) ENGINE = InnoDB;
 
 -- 
 -- Dumping data for table `words`
 -- 
 
-INSERT INTO `words` VALUES ('lt', 'SENEL�', 't�vo ar motinos, motina');
-INSERT INTO `words` VALUES ('lt', 'TRAKAI', 'Vytauto Did�iojojo gimimo vieta');
-INSERT INTO `words` VALUES ('lt', 'MERAS', 'miesto savivaldyb�s vadovas');
+INSERT INTO `words` VALUES ('lt', 'SENELË', 'tëvo ar motinos, motina');
+INSERT INTO `words` VALUES ('lt', 'TRAKAI', 'Vytauto Didþiojojo gimimo vieta');
+INSERT INTO `words` VALUES ('lt', 'MERAS', 'miesto savivaldybës vadovas');
 INSERT INTO `words` VALUES ('lt', 'RTR', 'Rusijos televizija');
-INSERT INTO `words` VALUES ('lt', 'AMAS', '�adas, balsas');
-INSERT INTO `words` VALUES ('lt', 'BANDA', 'Karvi� ...');
+INSERT INTO `words` VALUES ('lt', 'AMAS', 'þadas, balsas');
+INSERT INTO `words` VALUES ('lt', 'BANDA', 'Karviø ...');
 INSERT INTO `words` VALUES ('lt', 'SERBAS', 'Serbijos gyventojas');
 INSERT INTO `words` VALUES ('lt', 'MTV', 'Muzikinis televizijos kanalas');
-INSERT INTO `words` VALUES ('lt', 'KRA�IAI', 'miestelis Kelm�s rajone,');
-INSERT INTO `words` VALUES ('lt', 'ETIKA', '�moni� elgesio normos');
-INSERT INTO `words` VALUES ('lt', 'ASTRA', 'dar�elio g�l�');
-INSERT INTO `words` VALUES ('lt', 'LO��', 'Mason� ...');
-INSERT INTO `words` VALUES ('lt', 'DAUBA', 'Duob�, �dubimas, ...');
-INSERT INTO `words` VALUES ('lt', 'SAMBA', 'brazil� kilm�s pramoginis  �okis');
+INSERT INTO `words` VALUES ('lt', 'KRAÞIAI', 'miestelis Kelmës rajone,');
+INSERT INTO `words` VALUES ('lt', 'ETIKA', 'þmoniø elgesio normos');
+INSERT INTO `words` VALUES ('lt', 'ASTRA', 'darþelio gëlë');
+INSERT INTO `words` VALUES ('lt', 'LOÞË', 'Masonø ...');
+INSERT INTO `words` VALUES ('lt', 'DAUBA', 'Duobë, ádubimas, ...');
+INSERT INTO `words` VALUES ('lt', 'SAMBA', 'brazilø kilmës pramoginis  ðokis');
 INSERT INTO `words` VALUES ('lt', 'NORMA', 'nustatytas kiekis, dydis');
-INSERT INTO `words` VALUES ('lt', 'LTSR', 'Lietuvos pavadinimas sovietme�iu');
-INSERT INTO `words` VALUES ('lt', 'IKI', 'Parduotuvi� tinklas');
+INSERT INTO `words` VALUES ('lt', 'LTSR', 'Lietuvos pavadinimas sovietmeèiu');
+INSERT INTO `words` VALUES ('lt', 'IKI', 'Parduotuviø tinklas');
 INSERT INTO `words` VALUES ('lt', 'VIETA', 'Susitikimo, nusikaltimo, gyvenamoji....');
-INSERT INTO `words` VALUES ('lt', 'TRASA', 'linija, nu�ym�ta vietov�je arba �em�lapyje, nustatanti jud�jimo krypt�');
-INSERT INTO `words` VALUES ('lt', 'MAESTRO', 'pagarbus �ymi� meninink� vadinimas');
-INSERT INTO `words` VALUES ('lt', 'MATAS', 'pad�tis, kai �achuojamo karaliaus i�gelb�ti negalima');
-INSERT INTO `words` VALUES ('lt', 'BARAS', 'restoranas, kur u�kand�iai ir g�rimai parduodami prie bufeto');
+INSERT INTO `words` VALUES ('lt', 'TRASA', 'linija, nuþymëta vietovëje arba þemëlapyje, nustatanti judëjimo kryptá');
+INSERT INTO `words` VALUES ('lt', 'MAESTRO', 'pagarbus þymiø menininkø vadinimas');
+INSERT INTO `words` VALUES ('lt', 'MATAS', 'padëtis, kai ðachuojamo karaliaus iðgelbëti negalima');
+INSERT INTO `words` VALUES ('lt', 'BARAS', 'restoranas, kur uþkandþiai ir gërimai parduodami prie bufeto');
 INSERT INTO `words` VALUES ('lt', 'VILNA', 'Avies ...');
-INSERT INTO `words` VALUES ('lt', '�ARA', 'Vakaro ...');
-INSERT INTO `words` VALUES ('lt', 'MENIU', 'Valgiara�tis');
+INSERT INTO `words` VALUES ('lt', 'ÞARA', 'Vakaro ...');
+INSERT INTO `words` VALUES ('lt', 'MENIU', 'Valgiaraðtis');
 INSERT INTO `words` VALUES ('lt', 'TAIKA', 'Ne karo metas');
 INSERT INTO `words` VALUES ('lt', 'PK', 'Personalinis kompiuteris');
-INSERT INTO `words` VALUES ('lt', 'ALFA', '�A� graiki�kai');
-INSERT INTO `words` VALUES ('lt', 'JIDI�', '�yd� kalba');
-INSERT INTO `words` VALUES ('lt', '�IAIP', 'Nei ..., nei taip');
-INSERT INTO `words` VALUES ('lt', 'SIURBLYS', 'Dulki� surink�jas');
-INSERT INTO `words` VALUES ('lt', 'BARBORA', '... Radvilait�');
-INSERT INTO `words` VALUES ('lt', 'SAKALAS', 'Pl��rus pauk�tis');
+INSERT INTO `words` VALUES ('lt', 'ALFA', '„A“ graikiðkai');
+INSERT INTO `words` VALUES ('lt', 'JIDIÐ', 'Þydø kalba');
+INSERT INTO `words` VALUES ('lt', 'ÐIAIP', 'Nei ..., nei taip');
+INSERT INTO `words` VALUES ('lt', 'SIURBLYS', 'Dulkiø surinkëjas');
+INSERT INTO `words` VALUES ('lt', 'BARBORA', '... Radvilaitë');
+INSERT INTO `words` VALUES ('lt', 'SAKALAS', 'Plëðrus paukðtis');
 INSERT INTO `words` VALUES ('lt', 'AZOTAS', 'chem. N');
 INSERT INTO `words` VALUES ('lt', 'KALIGULA', 'Romos imperarorius');
-INSERT INTO `words` VALUES ('lt', 'GREIT', '... gri�k');
+INSERT INTO `words` VALUES ('lt', 'GREIT', '... griþk');
 INSERT INTO `words` VALUES ('lt', 'ALGA', 'Atlyginimas');
 INSERT INTO `words` VALUES ('lt', 'DUONA', 'Miltinis valgis');
-INSERT INTO `words` VALUES ('lt', 'A�ARA', 'poez.... dievo aky');
+INSERT INTO `words` VALUES ('lt', 'AÐARA', 'poez.... dievo aky');
 INSERT INTO `words` VALUES ('lt', 'ATGAL', 'Ne pirmyn');
 INSERT INTO `words` VALUES ('lt', 'FRANK', 'Romanas " ... Kruk"');
 INSERT INTO `words` VALUES ('lt', 'VGTU', 'Universitetas Vilniuje');
-INSERT INTO `words` VALUES ('lt', 'PIETA', 'Mikelend�elo skulpt�ra');
-INSERT INTO `words` VALUES ('lt', 'AURA', 'Energija supanti k�n�');
-INSERT INTO `words` VALUES ('lt', 'NBA', 'Krep�inio asociacija');
-INSERT INTO `words` VALUES ('lt', 'TOGA', 'Rom�ni�kas apsiaustas');
+INSERT INTO `words` VALUES ('lt', 'PIETA', 'Mikelendþelo skulptûra');
+INSERT INTO `words` VALUES ('lt', 'AURA', 'Energija supanti kûnà');
+INSERT INTO `words` VALUES ('lt', 'NBA', 'Krepðinio asociacija');
+INSERT INTO `words` VALUES ('lt', 'TOGA', 'Romëniðkas apsiaustas');
 INSERT INTO `words` VALUES ('lt', 'PIGUS', 'Nebrangus');
 INSERT INTO `words` VALUES ('lt', 'SAM', 'Ministerija');
-INSERT INTO `words` VALUES ('lt', 'OPEL', 'Voki�kas automobilis');
-INSERT INTO `words` VALUES ('lt', 'EMA', 'Emanuel� sutr.');
-INSERT INTO `words` VALUES ('lt', 'ANTIS', 'Roko grup�');
+INSERT INTO `words` VALUES ('lt', 'OPEL', 'Vokiðkas automobilis');
+INSERT INTO `words` VALUES ('lt', 'EMA', 'Emanuelë sutr.');
+INSERT INTO `words` VALUES ('lt', 'ANTIS', 'Roko grupë');
 INSERT INTO `words` VALUES ('lt', 'TARA', 'Stiklo ...');
-INSERT INTO `words` VALUES ('lt', 'ROMA', 'Italijos sostin�');
-INSERT INTO `words` VALUES ('lt', 'SAUGOS', '... pagalv�s');
-INSERT INTO `words` VALUES ('lt', 'LAMPASAS', 'Prisiuvamas laipsnio �enklas');
+INSERT INTO `words` VALUES ('lt', 'ROMA', 'Italijos sostinë');
+INSERT INTO `words` VALUES ('lt', 'SAUGOS', '... pagalvës');
+INSERT INTO `words` VALUES ('lt', 'LAMPASAS', 'Prisiuvamas laipsnio þenklas');
 INSERT INTO `words` VALUES ('lt', 'TURBO', '... dyzelinis variklis');
-INSERT INTO `words` VALUES ('lt', 'J�ZUS', '... Kristus');
+INSERT INTO `words` VALUES ('lt', 'JËZUS', '... Kristus');
 INSERT INTO `words` VALUES ('lt', 'X', 'Iksas');
-INSERT INTO `words` VALUES ('lt', 'ROMEO', '... ir D�iuljeta');
-INSERT INTO `words` VALUES ('lt', 'PETYS', 'anat. K�no dalis');
+INSERT INTO `words` VALUES ('lt', 'ROMEO', '... ir Dþiuljeta');
+INSERT INTO `words` VALUES ('lt', 'PETYS', 'anat. Kûno dalis');
 INSERT INTO `words` VALUES ('lt', 'SYSAS', 'seimo narys Algirdas ...');
-INSERT INTO `words` VALUES ('lt', 'SKAMP', 'Muzikos grup�');
+INSERT INTO `words` VALUES ('lt', 'SKAMP', 'Muzikos grupë');
 INSERT INTO `words` VALUES ('lt', 'PABAISA', 'Labai baisi');
 INSERT INTO `words` VALUES ('lt', 'PARANGA', 'Parengimas');
-INSERT INTO `words` VALUES ('lt', 'PRUSTAS', 'Ra�yt. Marselis  ...');
+INSERT INTO `words` VALUES ('lt', 'PRUSTAS', 'Raðyt. Marselis  ...');
 INSERT INTO `words` VALUES ('lt', 'PAMOKA', '45 min. mokykloje');
 INSERT INTO `words` VALUES ('lt', 'PORYT', 'Po rytojaus');
 INSERT INTO `words` VALUES ('lt', 'TORIS', 'chem. Th');
-INSERT INTO `words` VALUES ('lt', 'U�VAKAR', 'Prie� dvi dienas');
-INSERT INTO `words` VALUES ('lt', 'KARLAS', 'Buratino t�vas');
-INSERT INTO `words` VALUES ('lt', 'SHARP', 'angl. -A�trus');
-INSERT INTO `words` VALUES ('lt', 'RASOS', 'Pagoni�ka �vent�');
+INSERT INTO `words` VALUES ('lt', 'UÞVAKAR', 'Prieð dvi dienas');
+INSERT INTO `words` VALUES ('lt', 'KARLAS', 'Buratino tëvas');
+INSERT INTO `words` VALUES ('lt', 'SHARP', 'angl. -Aðtrus');
+INSERT INTO `words` VALUES ('lt', 'RASOS', 'Pagoniðka ðventë');
 INSERT INTO `words` VALUES ('lt', 'SAMOA', 'Valst. Ramiajame vandenyne');
-INSERT INTO `words` VALUES ('lt', 'SUBARU', 'Japoni�kas automobilis');
-INSERT INTO `words` VALUES ('lt', 'L��U', 'Universitetas Kaune');
+INSERT INTO `words` VALUES ('lt', 'SUBARU', 'Japoniðkas automobilis');
+INSERT INTO `words` VALUES ('lt', 'LÞÛU', 'Universitetas Kaune');
 INSERT INTO `words` VALUES ('lt', 'GARAS', 'Vandens dujos');
 INSERT INTO `words` VALUES ('lt', 'MARAS', 'A. Kamiu romanas');
 INSERT INTO `words` VALUES ('lt', 'BVT', 'Bouvet sala');
-INSERT INTO `words` VALUES ('lt', 'SIMAS', 'Babravi�iaus pseudonimas');
-INSERT INTO `words` VALUES ('lt', 'KR�VA', '... malk�');
+INSERT INTO `words` VALUES ('lt', 'SIMAS', 'Babravièiaus pseudonimas');
+INSERT INTO `words` VALUES ('lt', 'KRÛVA', '... malkø');
 INSERT INTO `words` VALUES ('lt', 'SO', 'Somalis');
 INSERT INTO `words` VALUES ('lt', 'PASAGA', 'Arklio batas');
-INSERT INTO `words` VALUES ('lt', 'AB', 'Akcin� bendrov�');
-INSERT INTO `words` VALUES ('lt', 'APUTIS', 'Ra�ytojas Juozas ...');
-INSERT INTO `words` VALUES ('lt', 'A�', 'gram. 1 asmuo');
-INSERT INTO `words` VALUES ('lt', 'BASAS', 'Be bat�');
-INSERT INTO `words` VALUES ('lt', '�', 'Paskutin� raid�');
+INSERT INTO `words` VALUES ('lt', 'AB', 'Akcinë bendrovë');
+INSERT INTO `words` VALUES ('lt', 'APUTIS', 'Raðytojas Juozas ...');
+INSERT INTO `words` VALUES ('lt', 'AÐ', 'gram. 1 asmuo');
+INSERT INTO `words` VALUES ('lt', 'BASAS', 'Be batø');
+INSERT INTO `words` VALUES ('lt', 'Þ', 'Paskutinë raidë');
 INSERT INTO `words` VALUES ('lt', 'KB', 'Kilobitai');
-INSERT INTO `words` VALUES ('lt', '�AS', 'Populiari muz.grup�');
-INSERT INTO `words` VALUES ('lt', 'A', 'Pirmoji raid�');
-INSERT INTO `words` VALUES ('lt', 'LOS', 'Klubas Kaune �... Patrankos�');
-INSERT INTO `words` VALUES ('lt', 'BAUDA', 'Pinigin� bausm�');
-INSERT INTO `words` VALUES ('lt', 'REQUIEM', 'Mocarto k�rinys');
-INSERT INTO `words` VALUES ('lt', 'RUSIJA', 'Valstyb�');
-INSERT INTO `words` VALUES ('lt', 'J�ROJE', 'daina. �Palangos ... �');
+INSERT INTO `words` VALUES ('lt', 'ÞAS', 'Populiari muz.grupë');
+INSERT INTO `words` VALUES ('lt', 'A', 'Pirmoji raidë');
+INSERT INTO `words` VALUES ('lt', 'LOS', 'Klubas Kaune „... Patrankos“');
+INSERT INTO `words` VALUES ('lt', 'BAUDA', 'Piniginë bausmë');
+INSERT INTO `words` VALUES ('lt', 'REQUIEM', 'Mocarto kûrinys');
+INSERT INTO `words` VALUES ('lt', 'RUSIJA', 'Valstybë');
+INSERT INTO `words` VALUES ('lt', 'JÛROJE', 'daina. “Palangos ... „');
 INSERT INTO `words` VALUES ('lt', 'TB', 'chem.Terbis');
-INSERT INTO `words` VALUES ('lt', 'BLU�NIS', 'anat. organas');
+INSERT INTO `words` VALUES ('lt', 'BLUÞNIS', 'anat. organas');
 INSERT INTO `words` VALUES ('lt', 'BANANAS', 'Policininko lazda');
-INSERT INTO `words` VALUES ('lt', 'BUR�', 'Burlaivio dalis');
-INSERT INTO `words` VALUES ('lt', 'K�RYBA', 'Meninis procesas');
-INSERT INTO `words` VALUES ('lt', 'LI�T�', 'Li�to motina');
-INSERT INTO `words` VALUES ('lt', 'LUANDA', 'Angolos sostin�');
-INSERT INTO `words` VALUES ('lt', 'KUR��', 'Kur�io moteris');
-INSERT INTO `words` VALUES ('lt', 'UGNIS', 'Viena i� stichij�');
-INSERT INTO `words` VALUES ('lt', 'NUOBOD�IAUJA', 'Nuobod�iai leid�ia laik�');
-INSERT INTO `words` VALUES ('lt', 'AIB�', 'Daugyb�');
+INSERT INTO `words` VALUES ('lt', 'BURË', 'Burlaivio dalis');
+INSERT INTO `words` VALUES ('lt', 'KÛRYBA', 'Meninis procesas');
+INSERT INTO `words` VALUES ('lt', 'LIÛTË', 'Liûto motina');
+INSERT INTO `words` VALUES ('lt', 'LUANDA', 'Angolos sostinë');
+INSERT INTO `words` VALUES ('lt', 'KURÐË', 'Kurðio moteris');
+INSERT INTO `words` VALUES ('lt', 'UGNIS', 'Viena ið stichijø');
+INSERT INTO `words` VALUES ('lt', 'NUOBODÞIAUJA', 'Nuobodþiai leidþia laikà');
+INSERT INTO `words` VALUES ('lt', 'AIBË', 'Daugybë');
 INSERT INTO `words` VALUES ('lt', 'RAJ', 'Rajonas sutr.');
-INSERT INTO `words` VALUES ('lt', 'PENSN�', 'Senoviniai akiniai');
-INSERT INTO `words` VALUES ('lt', 'I', 'Lotyni�kas vienetas');
-INSERT INTO `words` VALUES ('lt', 'CV', 'Gyvenimo apra�ymas');
+INSERT INTO `words` VALUES ('lt', 'PENSNË', 'Senoviniai akiniai');
+INSERT INTO `words` VALUES ('lt', 'I', 'Lotyniðkas vienetas');
+INSERT INTO `words` VALUES ('lt', 'CV', 'Gyvenimo apraðymas');
 INSERT INTO `words` VALUES ('lt', 'MB', 'Megabaitai sutr.');
 INSERT INTO `words` VALUES ('lt', 'AMEBA', 'zool. beformis');
-INSERT INTO `words` VALUES ('lt', 'V', 'Lotyni�kas penketas');
-INSERT INTO `words` VALUES ('lt', '�SESER�', 'Netikra sesuo');
+INSERT INTO `words` VALUES ('lt', 'V', 'Lotyniðkas penketas');
+INSERT INTO `words` VALUES ('lt', 'ÁSESERË', 'Netikra sesuo');
 INSERT INTO `words` VALUES ('demo', 'AFRICA', 'The world''s second-largest continent');
 INSERT INTO `words` VALUES ('demo', 'LITHUANIA', 'One of the Baltic countries');
 INSERT INTO `words` VALUES ('demo', 'VILNIUS', 'Capital of Lithuania');
@@ -168,3 +167,142 @@ INSERT INTO `words` VALUES ('demo', 'GOOGLE', 'Search engine');
 INSERT INTO `words` VALUES ('demo', 'LINUX', 'Operating system');
 INSERT INTO `words` VALUES ('demo', 'BIX', 'Lithuanian rock band');
 INSERT INTO `words` VALUES ('demo', 'BAGGINS', 'Bilbo ...');
+INSERT INTO `words` VALUES ('rus', 'Небо', '&quot;Арка&quot; во рту');
+INSERT INTO `words` VALUES ('rus', 'Трагик', '&quot;Оппонент комика&quot;');
+INSERT INTO `words` VALUES ('rus', 'Давидян', 'Coв. cпopтcмeн-бopeц (7 букв)');
+INSERT INTO `words` VALUES ('rus', 'сибарит', 'Антипод аскета');
+INSERT INTO `words` VALUES ('rus', 'Заяц', 'Безбилетный грызун');
+INSERT INTO `words` VALUES ('rus', 'Запал', 'Бикфордов шнур');
+INSERT INTO `words` VALUES ('rus', 'плита', 'Большой, плоcкий кyсок кaмня или метaлла (5 букв)');
+INSERT INTO `words` VALUES ('rus', 'арборетум', 'Ботанический сад, дендрарий. (букв: 9)');
+INSERT INTO `words` VALUES ('rus', 'Брус', 'Бревно для избы');
+INSERT INTO `words` VALUES ('rus', 'Урок', 'Бывает не впрок');
+INSERT INTO `words` VALUES ('rus', 'Ароматизатор', 'Ванилин');
+INSERT INTO `words` VALUES ('rus', 'Опахало', 'Веер, насаженный на древко');
+INSERT INTO `words` VALUES ('rus', 'Улика', 'Вещдок');
+INSERT INTO `words` VALUES ('rus', 'Шуруп', 'Винт-свморез');
+INSERT INTO `words` VALUES ('rus', 'Вкус', 'Внешнее чувство');
+INSERT INTO `words` VALUES ('rus', 'Интуиция', 'Внутреннее чутье');
+INSERT INTO `words` VALUES ('rus', 'Осока', 'Водолюбивое растение');
+INSERT INTO `words` VALUES ('rus', 'Стая', 'Волчий коллектив');
+INSERT INTO `words` VALUES ('rus', 'Шлюз', 'Ворота ГЭС');
+INSERT INTO `words` VALUES ('rus', 'Капитал', 'Главны труд Карла Маркса');
+INSERT INTO `words` VALUES ('rus', 'Сопрано', 'Голоспевицы');
+INSERT INTO `words` VALUES ('rus', 'Скутер', 'Гоночный катер');
+INSERT INTO `words` VALUES ('rus', 'сиэтл', 'Город на северо-западе США1');
+INSERT INTO `words` VALUES ('rus', 'остенде', 'Город-порт-курорт в Бельгии');
+INSERT INTO `words` VALUES ('rus', 'уорикшир', 'Графство в Англии9');
+INSERT INTO `words` VALUES ('rus', 'Наяда', 'Греческая русалка');
+INSERT INTO `words` VALUES ('rus', 'Гогот', 'Гусиная болтовня');
+INSERT INTO `words` VALUES ('rus', 'Титул', 'Дворянский или чемпионский');
+INSERT INTO `words` VALUES ('rus', 'Копия', 'Делается на ксероксе');
+INSERT INTO `words` VALUES ('rus', 'Румб', 'Деление компаса');
+INSERT INTO `words` VALUES ('rus', 'Саксаул', 'Дерево в пустыне');
+INSERT INTO `words` VALUES ('rus', 'Экран', 'Дисплей');
+INSERT INTO `words` VALUES ('rus', 'Гараж', 'Дом машины');
+INSERT INTO `words` VALUES ('rus', 'Опята', 'Дружные грибы');
+INSERT INTO `words` VALUES ('rus', 'Ватт', 'Единица мощности');
+INSERT INTO `words` VALUES ('rus', 'Водосток', 'Желоб');
+INSERT INTO `words` VALUES ('rus', 'Еврей', 'Житель Израиля');
+INSERT INTO `words` VALUES ('rus', 'Урожай', 'За него в СССР бились каждый год');
+INSERT INTO `words` VALUES ('rus', 'шарада', 'Загадка?');
+INSERT INTO `words` VALUES ('rus', 'Опара', 'Закваска для теста');
+INSERT INTO `words` VALUES ('rus', 'Фрау', 'Замужняя немка');
+INSERT INTO `words` VALUES ('rus', 'Карп', 'Зеркальная рыба');
+INSERT INTO `words` VALUES ('rus', 'Кобра', 'Змея факира');
+INSERT INTO `words` VALUES ('rus', 'Зеница', 'Зрачок по-старинке');
+INSERT INTO `words` VALUES ('rus', 'Регби', 'Игра с овальным мячом');
+INSERT INTO `words` VALUES ('rus', 'Аршин', 'Им Россию не измерить');
+INSERT INTO `words` VALUES ('rus', 'Залог', 'Имущество под ссуду');
+INSERT INTO `words` VALUES ('rus', 'мадерна', 'Итал. архитектор 16-17 вв.');
+INSERT INTO `words` VALUES ('rus', 'Сильвин', 'Калийная соль');
+INSERT INTO `words` VALUES ('rus', 'Ясон', 'Капитан Арго');
+INSERT INTO `words` VALUES ('rus', 'Аргонавты', 'Команда Ясона');
+INSERT INTO `words` VALUES ('rus', 'Нагар', 'Копоть на фитиле');
+INSERT INTO `words` VALUES ('rus', 'кассета', 'Коробка с магнитной лентой');
+INSERT INTO `words` VALUES ('rus', 'Иордан', 'Крестильная река Иесуса');
+INSERT INTO `words` VALUES ('rus', 'Овод', 'Кровавый враг скота, витающий над стадом');
+INSERT INTO `words` VALUES ('rus', 'Табак', 'Курево');
+INSERT INTO `words` VALUES ('rus', 'Алупка', 'Курорт под Ялтой');
+INSERT INTO `words` VALUES ('rus', 'Бальзам', 'Лечебная мазь');
+INSERT INTO `words` VALUES ('rus', 'Смола', 'Липкий сок ели');
+INSERT INTO `words` VALUES ('rus', 'Напев', 'Лирическая мелодия');
+INSERT INTO `words` VALUES ('rus', 'Купол', 'Луковица церкви');
+INSERT INTO `words` VALUES ('rus', 'Росинка', 'Маковая ...');
+INSERT INTO `words` VALUES ('rus', 'практика', 'Марка фотоаппарата? [8 букв]');
+INSERT INTO `words` VALUES ('rus', 'Сусек', 'Место в амбаре для зерна');
+INSERT INTO `words` VALUES ('rus', 'Рамазан', 'Месяц уразы');
+INSERT INTO `words` VALUES ('rus', 'Боржоми', 'Минеральная вода');
+INSERT INTO `words` VALUES ('rus', 'Пикет', 'Митинг');
+INSERT INTO `words` VALUES ('rus', 'Сатирик', 'Михаил Жванецкий');
+INSERT INTO `words` VALUES ('rus', 'Аксакал', 'Мудрый старец из аула');
+INSERT INTO `words` VALUES ('rus', 'Зевс', 'Муж Геры');
+INSERT INTO `words` VALUES ('rus', 'Ондатра', 'Мускусная крыса');
+INSERT INTO `words` VALUES ('rus', 'Рагу', 'Мясное блюдо');
+INSERT INTO `words` VALUES ('rus', 'ЛСД', 'Наркотик');
+INSERT INTO `words` VALUES ('rus', 'Расправа', 'Насилие над непокорным');
+INSERT INTO `words` VALUES ('rus', 'Барсук', 'Не спит, когда тихо в лесу');
+INSERT INTO `words` VALUES ('rus', 'Умора', 'Нечто крайне смешное');
+INSERT INTO `words` VALUES ('rus', 'Кубатура', 'Объем помещения');
+INSERT INTO `words` VALUES ('rus', 'Ослик', 'Один из друзей Винни-Пуха');
+INSERT INTO `words` VALUES ('rus', 'Травиата', 'Опера Верди про даму с камелиями');
+INSERT INTO `words` VALUES ('rus', 'мамонтов', 'Основатель частной оперы в Москве');
+INSERT INTO `words` VALUES ('rus', 'Агамемнон', 'Отец Ореста (миф.). (букв: 9)');
+INSERT INTO `words` VALUES ('rus', 'Разница', 'Отличие');
+INSERT INTO `words` VALUES ('rus', 'кривляние', 'Паясничание');
+INSERT INTO `words` VALUES ('rus', 'Трансферт', 'Перевод денег');
+INSERT INTO `words` VALUES ('rus', 'гиньоль', 'Персонаж франц. театра кукол');
+INSERT INTO `words` VALUES ('rus', 'Титан', 'Печка в поезде');
+INSERT INTO `words` VALUES ('rus', 'Сатурн', 'Планета в кольцах');
+INSERT INTO `words` VALUES ('rus', 'Ротор', 'Подвижная часть мотора');
+INSERT INTO `words` VALUES ('rus', 'Метрополитен', 'Подземка');
+INSERT INTO `words` VALUES ('rus', 'Утка', 'Подсадная птица');
+INSERT INTO `words` VALUES ('rus', 'Зебра', 'Полосатая лошадка.');
+INSERT INTO `words` VALUES ('rus', 'Исчадие', 'Порождение ада');
+INSERT INTO `words` VALUES ('rus', 'Ржа', 'Порча на железе');
+INSERT INTO `words` VALUES ('rus', 'Купер', 'Последний из могикан (автор)');
+INSERT INTO `words` VALUES ('rus', 'Руно', 'Приманка для аргонавтов');
+INSERT INTO `words` VALUES ('rus', 'Басня', 'Притча про слона и моську');
+INSERT INTO `words` VALUES ('rus', 'Течь', 'Пробоина в судне');
+INSERT INTO `words` VALUES ('rus', 'Крах', 'Провал с треском');
+INSERT INTO `words` VALUES ('rus', 'Коко', 'Прозвище Габриэль Шанель');
+INSERT INTO `words` VALUES ('rus', 'Тибр', 'Река в Италии [4 буквы]');
+INSERT INTO `words` VALUES ('rus', 'Опиум', 'Религия для народа');
+INSERT INTO `words` VALUES ('rus', 'Таганрог', 'Родной город Чехова');
+INSERT INTO `words` VALUES ('rus', 'Истина', 'Рождается в споре');
+INSERT INTO `words` VALUES ('rus', 'Жбан', 'Русский сосуд для кваса');
+INSERT INTO `words` VALUES ('rus', 'Сириус', 'Самая яркая звезда');
+INSERT INTO `words` VALUES ('rus', 'Афоня', 'Сантехник Борщов');
+INSERT INTO `words` VALUES ('rus', 'Уста', 'Сахарные губы');
+INSERT INTO `words` VALUES ('rus', 'Комбайнер', 'Сельский механизатор');
+INSERT INTO `words` VALUES ('rus', 'Ротация', 'Синоним вращения');
+INSERT INTO `words` VALUES ('rus', 'надежда', 'Синоним упование');
+INSERT INTO `words` VALUES ('rus', 'Псарь', 'Слуга при своре');
+INSERT INTO `words` VALUES ('rus', 'Лыжа', 'Снегоступ биатлониста');
+INSERT INTO `words` VALUES ('rus', 'Лиханов', 'Советский писатель 3');
+INSERT INTO `words` VALUES ('rus', 'Нота', 'Соль в аккорде');
+INSERT INTO `words` VALUES ('rus', 'Ипотека', 'Ссуда на квартиру');
+INSERT INTO `words` VALUES ('rus', 'Игра', 'Стоит свеч');
+INSERT INTO `words` VALUES ('rus', 'Астана', 'Столица Казахстана');
+INSERT INTO `words` VALUES ('rus', 'Паром', 'Судно на переправе');
+INSERT INTO `words` VALUES ('rus', 'Буратино', 'Сын папы Карло');
+INSERT INTO `words` VALUES ('rus', 'Балаган', 'Театр на ярмарке');
+INSERT INTO `words` VALUES ('rus', 'Канат', 'Текстильный трос');
+INSERT INTO `words` VALUES ('rus', 'метелка', 'Тип соцветия, цветка. (букв: 7)');
+INSERT INTO `words` VALUES ('rus', 'Томагавк', 'Топорик индейца');
+INSERT INTO `words` VALUES ('rus', 'Дыня', 'Торпеда с бахчи');
+INSERT INTO `words` VALUES ('rus', 'Тулуп', 'Тройная шуба фигуриста');
+INSERT INTO `words` VALUES ('rus', 'Короб', 'Туес');
+INSERT INTO `words` VALUES ('rus', 'Сужение', 'Уменьшение по ширине');
+INSERT INTO `words` VALUES ('rus', 'Таня', 'Уронила в речку мячик');
+INSERT INTO `words` VALUES ('rus', 'Ельник', 'Хвойный лес');
+INSERT INTO `words` VALUES ('rus', 'баламут', 'Шалопай, вздорный болтун?');
+INSERT INTO `words` VALUES ('rus', 'Босс', 'Шеф');
+INSERT INTO `words` VALUES ('rus', 'Авеню', 'Широкая улица');
+INSERT INTO `words` VALUES ('rus', 'Окас', 'Эст. художник (4 букв)');
+INSERT INTO `words` VALUES ('rus', 'Мини', 'Юбочка выше колен');
+INSERT INTO `words` VALUES ('rus', 'Карат', 'Ювелирная мера массы');
+INSERT INTO `words` VALUES ('rus', 'Утята', 'Юные селезни');
+INSERT INTO `words` VALUES ('rus', 'Окот', 'Явление барсиков в мир');
+INSERT INTO `words` VALUES ('rus', 'Цеце', 'Ядовитая муха');
+INSERT INTO `words` VALUES ('rus', 'Ларь', 'Ящик-зернохранитель');

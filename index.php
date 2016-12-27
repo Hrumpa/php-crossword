@@ -17,6 +17,13 @@ PHP Crossword is PHP and MySQL based crossword generator.
 <h3>News</h3>
 
 <p>
+2016-12-28<br />
+! Only for demo<br />
+UTF-8 support<br />
+php 5.6 support and fixes
+</p>
+
+<p>
 2005-08-20<br />
 Generator & demo improved to support numbering of words.<br />
 Now generated demo looks like standard crossword puzzle.<br />

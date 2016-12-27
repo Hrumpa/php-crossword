@@ -72,8 +72,8 @@ class PHP_Crossword_Word
         $axis = $this->getCrossAxis();
 
         $cells = array();
-
-        for ($i = 0; $i < strlen($this->word); $i++)
+        $encoding = mb_detect_encoding($this->word);
+        for ($i = 0, $len = mb_strlen($this->word, $encoding); $i < $len; $i++)
         	if ($this->cells[$i]->canCross($axis))
             	$cells[] =&  $this->cells[$i];
 

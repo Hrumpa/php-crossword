@@ -1,11 +1,7 @@
-<?php
-require 'init.php';
-
-$success = $pc->generate();
-?>
+<? require 'init.php'; ?>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=<?=$charset?>">
+<meta charset="<?=$charset?>">
 <title>PHP Crossword Generator</title>
 <style>
 body, td { font-family: Courier; font-size: 10pt; }
@@ -27,6 +23,9 @@ body, td { font-family: Courier; font-size: 10pt; }
 </style>
 </head>
 <body>
+
+<?php $success = $pc->generate(); ?>
+
 <div align="center">
 
 <form>
@@ -61,9 +60,9 @@ body, td { font-family: Courier; font-size: 10pt; }
 <?
 
 $params = array(
-	'colors'	=> $_REQUEST['colors'],
+	'colors'	=> (isset($_REQUEST['colors']) && $_REQUEST['colors']) ? $_REQUEST['colors'] : 0,
 	'fillflag'	=> 0,
-	'cellflag'	=> $_REQUEST['bigblocks'] ? 'A' : ''
+	'cellflag'	=> (isset($_REQUEST['bigblocks']) && $_REQUEST['bigblocks']) ? 'A' : ''
 	);
 
 $html = $pc->getHTML($params);
@@ -96,15 +95,13 @@ $words = $pc->getWords();
 <? endforeach; ?>
 </table>
 
-<? endif; ?>
 
-
-<?=sprintf("<!--<p>Generated in %.4f sec.</p>-->",(getmicrotime() - $script_start))?>
+<?=sprintf("<p>Generated in %.4f sec.</p>",(getmicrotime() - $script_start))?>
 
 <p>
 <?
   $params = array(
-	'colors'	=> $_REQUEST['colors'],
+	'colors'	=> (isset($_REQUEST['colors']) && $_REQUEST['colors']) ? $_REQUEST['colors'] : 0,
 	'fillflag'	=> 1,
 	'cellflag'	=> 'B'
 	);
@@ -114,6 +111,8 @@ $words = $pc->getWords();
   print $html;
   print "\n\n<hr><!-- break here -->\n\n";
 ?>
+
+<? endif; ?>
 
 </div>
 

@@ -6,6 +6,12 @@ PHP Crossword is PHP and MySQL based crossword generator.
 News
 ----
 
+2016-12-28
+
+! Only for demo
+- UTF-8 support
+- php 5.6 support and fixes
+
 2005-08-20
 
 Generator & demo improved to support numbering of words.
@@ -15,6 +21,8 @@ Thanks to Sandy Antunes.
 
 Demo
 ----
+
+(author's links not included this repo)
 
 [General PHP Crossword demonstration](http://phpcrossword.sourceforge.net/demo.php)
 
